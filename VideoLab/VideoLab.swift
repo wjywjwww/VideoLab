@@ -166,7 +166,7 @@ public class VideoLab {
     private func makeVideoComposition() -> AVMutableVideoComposition {
         // TODO: optimize make performance, like return when exist
         
-        // Convert videoRenderLayers to videoCompositionInstructions
+        // Convert videoRenderLayers to LabVideoCompositionInstructions
         
         // Step 1: Put the layer start time and end time on the timeline, each interval is an instruction. Then sort by time
         // Make sure times contain zero
@@ -184,7 +184,7 @@ public class VideoLab {
         times.sort { $0 < $1 }
         
         // Step 2: Create instructions for each interval
-        var instructions: [VideoCompositionInstruction] = []
+        var instructions: [LabVideoCompositionInstruction] = []
         for index in 0..<times.count - 1 {
             let startTime = times[index]
             let endTime = times[index + 1]
@@ -197,7 +197,7 @@ public class VideoLab {
             }
             
             intersectingVideoRenderLayers.sort { $0.renderLayer.layerLevel < $1.renderLayer.layerLevel }
-            let instruction = VideoCompositionInstruction(videoRenderLayers: intersectingVideoRenderLayers, timeRange: timeRange)
+            let instruction = LabVideoCompositionInstruction(videoRenderLayers: intersectingVideoRenderLayers, timeRange: timeRange)
             instructions.append(instruction)
         }
 

@@ -1,5 +1,5 @@
 //
-//  VideoCompositionInstruction.swift
+//  LabVideoCompositionInstruction.swift
 //  VideoLab
 //
 //  Created by Bear on 2020/8/29.
@@ -8,7 +8,7 @@
 
 import AVFoundation
 
-class VideoCompositionInstruction: NSObject, AVVideoCompositionInstructionProtocol {
+class LabVideoCompositionInstruction: NSObject, AVVideoCompositionInstructionProtocol {
     var timeRange: CMTimeRange
     var enablePostProcessing: Bool
     var containsTweening: Bool
