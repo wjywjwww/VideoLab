@@ -15,7 +15,7 @@ class LayerCompositor {
 
     // MARK: - Public
     func renderPixelBuffer(_ pixelBuffer: CVPixelBuffer, for request: AVAsynchronousVideoCompositionRequest) {
-        guard let instruction = request.LabVideoCompositionInstruction as? LabVideoCompositionInstruction else {
+        guard let instruction = request.videoCompositionInstruction as? LabVideoCompositionInstruction else {
             return
         }
         guard let outputTexture = Texture.makeTexture(pixelBuffer: pixelBuffer) else {
