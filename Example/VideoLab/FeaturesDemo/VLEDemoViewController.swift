@@ -50,7 +50,6 @@ class VLEDemoViewController : UITableViewController{
         if let synchronizedLayer = makeSynchronizedLayer(playerItem: playerItem, videoLab: videoLab) {
             controller.view.layer.addSublayer(synchronizedLayer)
         }
-        
         navigationController?.pushViewController(controller, animated: true)
     }
     

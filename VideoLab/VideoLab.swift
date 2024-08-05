@@ -206,7 +206,7 @@ public class VideoLab {
         videoComposition.frameDuration = renderComposition.frameDuration
         videoComposition.renderSize = renderComposition.renderSize
         videoComposition.instructions = instructions
-        videoComposition.customVideoCompositorClass = VideoCompositor.self
+        videoComposition.customVideoCompositorClass = VLVideoCompositor.self
         self.videoComposition = videoComposition
         
         return videoComposition

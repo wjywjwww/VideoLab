@@ -8,7 +8,7 @@
 
 import AVFoundation
 
-class VideoCompositor: NSObject, AVVideoCompositing {
+class VLVideoCompositor: NSObject, AVVideoCompositing {
     private var renderingQueue = DispatchQueue(label: "com.studio.VideoLab.renderingqueue")
     private var renderContextQueue = DispatchQueue(label: "com.studio.VideoLab.rendercontextqueue")
     private var renderContext: AVVideoCompositionRenderContext?
