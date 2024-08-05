@@ -8,7 +8,7 @@
 
 import AVFoundation
 
-class VLVideoCompositor: NSObject, AVVideoCompositing {
+open class VLVideoCompositor: NSObject, AVVideoCompositing {
     private var renderingQueue = DispatchQueue(label: "com.studio.VideoLab.renderingqueue")
     private var renderContextQueue = DispatchQueue(label: "com.studio.VideoLab.rendercontextqueue")
     private var renderContext: AVVideoCompositionRenderContext?
@@ -17,17 +17,17 @@ class VLVideoCompositor: NSObject, AVVideoCompositing {
     private let layerCompositor = LayerCompositor()
     
     // MARK: - AVVideoCompositing
-    var sourcePixelBufferAttributes: [String : Any]? =
+    public var sourcePixelBufferAttributes: [String : Any]? =
         [String(kCVPixelBufferPixelFormatTypeKey): [Int(kCVPixelFormatType_32BGRA),
                                                     Int(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange),
                                                     Int(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)],
          String(kCVPixelBufferOpenGLESCompatibilityKey): true]
     
-    var requiredPixelBufferAttributesForRenderContext: [String : Any] =
+    public var requiredPixelBufferAttributesForRenderContext: [String : Any] =
         [String(kCVPixelBufferPixelFormatTypeKey): Int(kCVPixelFormatType_32BGRA),
          String(kCVPixelBufferOpenGLESCompatibilityKey): true]
 
-    func renderContextChanged(_ newRenderContext: AVVideoCompositionRenderContext) {
+    public func renderContextChanged(_ newRenderContext: AVVideoCompositionRenderContext) {
         renderingQueue.sync {
             renderContext = newRenderContext
         }
@@ -37,7 +37,7 @@ class VLVideoCompositor: NSObject, AVVideoCompositing {
         case newRenderedPixelBufferForRequestFailure
     }
     
-    func startRequest(_ request: AVAsynchronousVideoCompositionRequest) {
+    public func startRequest(_ request: AVAsynchronousVideoCompositionRequest) {
         autoreleasepool {
             renderingQueue.async {
                 if self.shouldCancelAllRequests {
@@ -54,7 +54,7 @@ class VLVideoCompositor: NSObject, AVVideoCompositing {
         }
     }
     
-    func cancelAllPendingVideoCompositionRequests() {
+    public func cancelAllPendingVideoCompositionRequests() {
         renderingQueue.sync {
             shouldCancelAllRequests = true
         }
